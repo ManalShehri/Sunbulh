@@ -1,80 +1,108 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from "react-native";
+ 
 export default function App() {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState('Not yet scanned')
-
-  const askForCameraPermission = () => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })()
-  }
-
-  // Request Camera Permission
-  useEffect(() => {
-    askForCameraPermission();
-  }, []);
-
-  // What happens when we scan the bar code
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    setText(data)
-    console.log('Type: ' + type + '\nData: ' + data)
-  };
-
-  // Check permissions and return the screens
-  if (hasPermission === null) {
-    return (
-      <View style={styles.container}>
-        <Text>Requesting for camera permission</Text>
-      </View>)
-  }
-  if (hasPermission === false) {
-    return (
-      <View style={styles.container}>
-        <Text style={{ margin: 10 }}>No access to camera</Text>
-        <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
-      </View>)
-  }
-
-   // Return the View
-   return (
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+ 
+  return (
     <View style={styles.container}>
-      <View style={styles.barcodebox}>
-        <BarCodeScanner
-          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          style={{ height: 400, width: 400 }} />
+      {/* <View style={styles.imageContainer}> */}
+        <Image style={styles.image} source={require("./assets/Sunbulh-logo.jpg")} />
+      {/* </View> */}
+ 
+      <StatusBar style="auto" />
+      
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Email..."
+          placeholderTextColor="#2a5b89"
+          onChangeText={(email) => setEmail(email)}
+        />
       </View>
-      <Text style={styles.maintext}>{text}</Text>
-
-      {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
+  
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Password..."
+          placeholderTextColor="#2a5b89"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+        />
+      </View>
+  
+      <TouchableOpacity>
+        <Text style={styles.forgot_button}>Forgot Password?</Text>
+      </TouchableOpacity>
+ 
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity> 
+      
+    {/*  */}
     </View>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#4788c8",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  maintext: {
-    fontSize: 16,
-    margin: 20,
+  // imageContainer: {
+  //   width: 150,
+  //   height: 150,
+  // },
+  image: {
+    marginBottom: 40,
+    width: 250,
+    height: 150,
   },
-  barcodebox: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 300,
-    width: 300,
-    overflow: 'hidden',
-    borderRadius: 30,
-    backgroundColor: 'tomato'
-  }
+ 
+  inputView: {
+    backgroundColor: "#c4d9ed",
+    borderRadius: 15,
+    width: "75%",
+    height: 45,
+    marginBottom: 20,
+    // alignItems: "left",
+  },
+ 
+  TextInput: {
+    height: 40,
+    flex: 1,
+    padding: 10,
+    marginLeft: 20,
+  },
+ 
+  forgot_button: {
+    height: 30,
+    marginBottom: 30,
+  },
+ 
+  loginBtn: {
+    width: "75%",
+    borderRadius: 15,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    // marginTop: 40,
+    backgroundColor: "#244e75",
+  },
+  loginText: {
+    color: '#ffffff'
+
+  },
 });
