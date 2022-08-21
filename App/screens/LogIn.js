@@ -6,10 +6,9 @@ function LogIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     return (
-        // <Text>Hhhhhhhhhhhhh</Text>
+
         <View style={styles.container}>
             <Image style={styles.image} source={require("../assets/images/Sunbulh-logo.jpg")} />
-          {/* </View> */}
      
          <StatusBar style="auto" />
           
