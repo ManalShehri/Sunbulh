@@ -1,7 +1,7 @@
 import { StyleSheet, View, TextInput, Text } from "react-native";
 import Colors from "../constants/colors";
 
-function PrimaryTextInput({placHolderText, isPass}){
+function PrimaryTextInput({placHolderText, isPass, handleInputs}){
     return (
         <View style={styles.inputView}>
             <TextInput
@@ -9,7 +9,7 @@ function PrimaryTextInput({placHolderText, isPass}){
             placeholder={placHolderText}
             placeholderTextColor="#2a5b89"
             secureTextEntry= {isPass}
-            // onChangeText={(email) => setEmail(email)}
+            onChangeText={(inputValue) => handleInputs(inputValue)}
             />
         </View>
     );

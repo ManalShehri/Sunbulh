@@ -1,13 +1,15 @@
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import Colors from "../constants/colors";
 import PrimaryButton from "../components/PrimaryButton";
 import PrimaryTextInput from "../components/PrimaryTextInput";
 
 
 function LogIn() {
+    // const setInputValue
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    console.log('Email:',email,'Pass:',password);
 
     // ----- TODO -----:
     // 1. Check inputs (email & pass)
@@ -24,8 +26,8 @@ function LogIn() {
                 />
             </View>
             <View style={styles.inputContainer}>
-                <PrimaryTextInput placHolderText = 'Email'/>
-                <PrimaryTextInput placHolderText = 'Passwors' isPass={true}/>
+                <PrimaryTextInput placHolderText = 'Email' handleInputs={(inputVal) => setEmail(inputVal)}/>
+                <PrimaryTextInput placHolderText = 'Passwors' isPass={true} handleInputs={(inputVal) => setPassword(inputVal)}/>
                 <PrimaryButton buttonText='LOGIN'/>
                 <TouchableOpacity style={styles.forgetBtn}>
                     <Text style={styles.forgetText}>Forgot Password?</Text>
