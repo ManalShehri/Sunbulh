@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import Colors from "../constants/colors";
 
-function PrimaryButton({buttonText}) {
+function PrimaryButton({buttonText, onPress}) {
     return (
-        <TouchableOpacity style={styles.btnStyle}>
+        <TouchableOpacity style={styles.btnStyle} onPress={onPress}>
             <Text style={styles.btnText}>{buttonText}</Text>
         </TouchableOpacity>
     );

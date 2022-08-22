@@ -9,7 +9,19 @@ function LogIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    console.log('Email:',email,'Pass:',password);
+    let dbEmail = 'M';
+    let dbPassword = '1';
+
+    function loginCheck() {
+        if (email == dbEmail && password == dbPassword)
+        {
+            console.log('Logged in')
+        }
+        else 
+        {
+            console.log('please check the inputs')
+        }
+    }
 
     // ----- TODO -----:
     // 1. Check inputs (email & pass)
@@ -28,7 +40,7 @@ function LogIn() {
             <View style={styles.inputContainer}>
                 <PrimaryTextInput placHolderText = 'Email' handleInputs={(inputVal) => setEmail(inputVal)}/>
                 <PrimaryTextInput placHolderText = 'Passwors' isPass={true} handleInputs={(inputVal) => setPassword(inputVal)}/>
-                <PrimaryButton buttonText='LOGIN'/>
+                <PrimaryButton buttonText='LOGIN' onPress={loginCheck}/>
                 <TouchableOpacity style={styles.forgetBtn}>
                     <Text style={styles.forgetText}>Forgot Password?</Text>
                 </TouchableOpacity>  
