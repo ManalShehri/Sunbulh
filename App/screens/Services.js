@@ -1,8 +1,9 @@
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 function Services() {
-    return <Text>Services will be here</Text>;
-};
+    return (
+        <Text>Services</Text>
+    );};
 
 export default Services;
 

@@ -1,7 +1,9 @@
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 function Offer() {
-    return <Text>Offers will be here</Text>;
+    return (
+        <Text>Offer</Text>
+    );
 };
 
 export default Offer;

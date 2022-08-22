@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet } from "react-native";
+import { StatusBar, SafeAreaView, StyleSheet, View } from "react-native";
 import Services from "./screens/Services";
 import LogIn from "./screens/LogIn";
 import Offer from "./screens/Offer";
@@ -34,7 +34,10 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.rootScreen}>
-      {screen}
+      <View style={styles.rootContiner}>
+        {screen}
+        <StatusBar style="auto" />
+      </View>
     </SafeAreaView>
   );
 };
@@ -43,5 +46,10 @@ const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
     backgroundColor: Colors.primaryBlue500,
+  },
+  rootContiner: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: "center",
   },
 });
