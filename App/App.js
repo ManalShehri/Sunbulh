@@ -28,8 +28,8 @@ export default function App() {
   // 8. Profile (view, change pass & name, view history of offers, view fav, delete from fav, add family) 
   // 9. Contact us 
 
-  let screen = <LogIn />;
-  // let screen = <Services />;
+  // let screen = <LogIn />;
+  let screen = <Services />;
   // let screen = <Offer />;
 
   return (
@@ -45,7 +45,7 @@ export default function App() {
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    backgroundColor: Colors.primaryBlue500,
+    // backgroundColor: Colors.primaryBlue500,
   },
   rootContiner: {
     flex: 1,
