@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primaryBlue800,
     },
     btnText: {
-        color: '#ffffff'
+        color: '#ffffff',
+        fontWeight: "bold",
+        fontSize: 18,
     },
 });

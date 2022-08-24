@@ -1,6 +1,9 @@
 import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 
 function Services() {
+    // Add the text inputs & buttons into components 
+    // sections of services as buttons
+
     return (
         <View style={styles.screenContainer}>
             <View style={styles.screenTitleContainer}>
