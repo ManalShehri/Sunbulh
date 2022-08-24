@@ -1,8 +1,11 @@
 import { StatusBar, SafeAreaView, StyleSheet, View } from "react-native";
+import { useState } from "react";
+
 import Services from "./screens/Services";
 import LogIn from "./screens/LogIn";
 import Offer from "./screens/Offer";
 import Colors from "./constants/colors";
+import Scan from "./screens/Scan";
 
 export default function App() {
 
@@ -39,24 +42,77 @@ export default function App() {
   // 8. Profile (view, change pass & name, view history of offers, view fav, delete from fav, add family) 
   // 9. Contact us 
 
-  // let screen = <LogIn />;
-  // let screen = <Services />;
-  let screen = <Offer />;
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [showOffer, setshowOffer] = useState(false);
+  const [showScan, setShowScan] = useState(false);
 
-  return (
-    <SafeAreaView style={styles.rootScreen}>
-      <View style={styles.rootContiner}>
+
+
+  const handleLogin = (val) => {
+    console.log(val);
+    setIsLoggedin(val);
+    // setCount(current => current + num);
+  };
+
+  const handleOffer = (val) => {
+    console.log(val);
+    setshowOffer(val);
+    // setCount(current => current + num);
+  };
+
+  const handleScan = (val) => {
+    console.log(val);
+    setShowScan(val);
+    // setCount(current => current + num);
+  };
+
+
+
+
+  let screen = <LogIn handleLogin={handleLogin}/>;
+  
+  // let screen = <Services />;
+  // let screen = <Offer />;
+  if (isLoggedin)
+  {
+    screen = <Services handleOffer={handleOffer}/>;
+    // console.log('isLoggedin',isLoggedin)
+  } 
+
+  if (showOffer)
+  {
+    screen = <Offer handleScan={handleScan}/>;
+    // console.log('isLoggedin',isLoggedin)
+  } 
+  
+  if (showScan)
+  {
+    screen = <Scan/>;
+    // console.log('isLoggedin',isLoggedin)
+  } 
+  return screen; 
+
+    // <SafeAreaView style={styles.rootScreen}>
+      // <View style={styles.rootContiner}>
+      <></>
         {screen}
-        <StatusBar style="auto" />
-      </View>
-    </SafeAreaView>
-  );
+
+        // <LogIn handleLogin={handleLogin} />
+        // <Services />
+        // <Offer />
+
+
+
+        // <StatusBar style="auto" />
+      // </View>
+    // </SafeAreaView>
+  // );
 };
 
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    // backgroundColor: Colors.primaryBlue500,
+    backgroundColor: Colors.primaryBlue500,
   },
   rootContiner: {
     flex: 1,

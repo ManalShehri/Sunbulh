@@ -1,10 +1,17 @@
-import { StyleSheet, View, Text, Button, Image, Separator, SafeAreaView, Alert } from "react-native";
+import { StyleSheet, View, Text, Button, Image, Separator, SafeAreaView, Alert, TouchableHighlight } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import Colors from "../constants/colors";
 
-function Offer() {
+function Offer({handleScan}) {
+    function handleScanClicing()
+    {
+        console.log('offer clicked'); 
+        handleScan(true);
+    }
+
     return (
-        <SafeAreaView style={styles.screenContainer}>
+        <SafeAreaView style={styles.rootScreen}>
+        <View style={styles.rootContiner}>
             <View style={styles.imageContainer}>
                 <Image 
                     style={styles.image}
@@ -19,15 +26,24 @@ function Offer() {
                 <Text style={styles.contentText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry, Lorem Ipsum is simply dummy text of the printing and typesetting industry, Lorem Ipsum is simply dummy text of the printing and typesetting industry</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <PrimaryButton buttonText='Scan'/>
+                <PrimaryButton buttonText='Scan' onPress={handleScan}/>
             </View>
-        </SafeAreaView>
-    );
+            </View>
+    </SafeAreaView>    );
 };
 
 export default Offer;
 
 const styles = StyleSheet.create({
+    rootScreen: {
+        flex: 1,
+        // backgroundColor: Colors.primaryBlue500,
+      },
+      rootContiner: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center",
+      },
         screenContainer: {
         // backgroundColor: 'red',
         width: '100%',

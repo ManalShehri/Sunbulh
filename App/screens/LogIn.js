@@ -1,25 +1,31 @@
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, SafeAreaView } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/PrimaryButton";
 import PrimaryTextInput from "../components/PrimaryTextInput";
+import Colors from "../constants/colors";
+import Services from "./Services";
 
 
-function LogIn() {
+function LogIn({handleLogin}) {
     // const setInputValue
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showErrorMsg, setShowErrorMsg] = useState(false);
 
     let dbEmail = 'M';
     let dbPassword = '1';
 
-    function loginCheck() {
+    const loginCheck = () => {
         if (email == dbEmail && password == dbPassword)
         {
-            console.log('Logged in')
+            console.log('Logged in');
+             handleLogin(true)
+        //    { <Services /> }
         }
         else 
         {
             console.log('please check the inputs')
+            setShowErrorMsg(true);
         }
     }
 
@@ -30,7 +36,8 @@ function LogIn() {
     // 4. Ability to change the password 
 
     return (
-        <>
+        <SafeAreaView style={styles.rootScreen}>
+        <View style={styles.rootContiner}>
             <View style={styles.imageContainer}>
                 <Image 
                     style={styles.image}
@@ -44,14 +51,32 @@ function LogIn() {
                 <TouchableOpacity style={styles.forgetBtn}>
                     <Text style={styles.forgetText}>Forgot Password?</Text>
                 </TouchableOpacity>  
+                {showErrorMsg ? <Text style={styles.errorMsg}>Wrong Email or Password!</Text> : <></>}
+                
             </View>
-        </>
+            </View>
+    </SafeAreaView>
     );
 };
 
 export default LogIn;
 
 const styles = StyleSheet.create({
+    // mainContainer: {
+    //     backgroundColor: 'red',
+    //     flex: 1,
+    //     height: '100%',
+    //     width:'100%',
+    // },
+    rootScreen: {
+        flex: 1,
+        backgroundColor: Colors.primaryBlue500,
+      },
+      rootContiner: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center",
+      },
     imageContainer: {
         width: 300,
         height: 200,
@@ -71,5 +96,9 @@ const styles = StyleSheet.create({
     forgetText: {
         height: 30,
         marginBottom: 30,
+    },
+    errorMsg: {
+        color: '#DC143C',
+        textAlign: "center",
     },
 });

@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
     btnText: {
         color: '#ffffff',
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 16,
     },
 });
