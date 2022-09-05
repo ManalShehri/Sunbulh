@@ -15,8 +15,6 @@ function ServicesScreen({ route, navigation }){
         return offerItem.categoryIds.indexOf(catId) >= 0;
     });
 
-    // console.log(displayedOffers);
-
     useLayoutEffect(() => {
         const categoryTitle = CATEGORIES.find(
             (category) => category.id === catId
@@ -28,7 +26,6 @@ function ServicesScreen({ route, navigation }){
 
     function renderOfferItem(itemData) {
         const item = itemData.item;
-        console.log(item)
         const offerItemProps = {
             id: item.id,
             categoryIds: item.categoryIds, 
@@ -40,8 +37,6 @@ function ServicesScreen({ route, navigation }){
         }
         return <OfferItem {...offerItemProps}/>
     }
-    // console.log(offerItemProps)
-
 
     return (
         <View style={styles.continer}>
@@ -51,8 +46,6 @@ function ServicesScreen({ route, navigation }){
              />
         </View>
     );
-    return <Text>''</Text>
-
 }
 
 export default ServicesScreen;

@@ -6,7 +6,7 @@ function OfferItem({ id, companyName, image, simpleText, details, onPress }){
 
     function selectOfferItemHandler(){
         navigation.navigate('Offer', {
-                // offerId : id,
+                offerId : id,
             });
     };
 

@@ -50,7 +50,6 @@ function Scan() {
       <Text style={styles.maintext}>{text}</Text>
 
       {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
-      <Button title="Back" />
     </View>
   );}
 
