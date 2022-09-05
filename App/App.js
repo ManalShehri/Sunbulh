@@ -1,11 +1,15 @@
 import { StatusBar, SafeAreaView, StyleSheet, View } from "react-native";
 import { useState } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Services from "./screens/Services";
 import LogIn from "./screens/LogIn";
 import Offer from "./screens/Offer";
 import Colors from "./constants/colors";
 import Scan from "./screens/Scan";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -42,81 +46,18 @@ export default function App() {
   // 8. Profile (view, change pass & name, view history of offers, view fav, delete from fav, add family) 
   // 9. Contact us 
 
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  const [showOffer, setshowOffer] = useState(false);
-  const [showScan, setShowScan] = useState(false);
+  return (
+    <>
+    <StatusBar style='light' />
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* <Stack.Screen name="Login" component={LogIn} /> */}
+        <Stack.Screen name="Services" component={Services} />
+        <Stack.Screen name="Offer" component={Offer} />
+        <Stack.Screen name="Scan" component={Scan} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    </>
+  )
 
-
-
-  const handleLogin = (val) => {
-    console.log(val);
-    setIsLoggedin(val);
-    // setCount(current => current + num);
-  };
-
-  const handleOffer = (val) => {
-    console.log(val);
-    setshowOffer(val);
-    // setCount(current => current + num);
-  };
-
-  const handleScan = (val) => {
-    console.log(val);
-    setShowScan(val);
-    // setCount(current => current + num);
-  };
-
-
-
-
-  let screen = <LogIn handleLogin={handleLogin}/>;
-  
-  // let screen = <Services />;
-  // let screen = <Offer />;
-  if (isLoggedin)
-  {
-    screen = <Services handleOffer={handleOffer}/>;
-    // console.log('isLoggedin',isLoggedin)
-  } 
-
-  if (showOffer)
-  {
-    screen = <Offer handleScan={handleScan}/>;
-    // console.log('isLoggedin',isLoggedin)
-  } 
-  
-  if (showScan)
-  {
-    screen = <Scan/>;
-    // console.log('isLoggedin',isLoggedin)
-  } 
-  return screen; 
-
-    // <SafeAreaView style={styles.rootScreen}>
-      // <View style={styles.rootContiner}>
-      <></>
-        {screen}
-
-        // <LogIn handleLogin={handleLogin} />
-        // <Services />
-        // <Offer />
-
-
-
-        // <StatusBar style="auto" />
-      // </View>
-    // </SafeAreaView>
-  // );
-};
-
-const styles = StyleSheet.create({
-  rootScreen: {
-    flex: 1,
-    backgroundColor: Colors.primaryBlue500,
-  },
-  rootContiner: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: "center",
-  },
-});
+}
