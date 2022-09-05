@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from "./screens/CategoriesScreen";
 import ServicesScreen from "./screens/ServicesScreen";
 import LogIn from "./screens/LogIn";
-import Offer from "./screens/Offer";
+import OfferScreen from "./screens/OfferScreen";
 import Colors from "./constants/colors";
 import Scan from "./screens/Scan";
 
@@ -15,9 +15,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   // ----- TODO -----
-  // Add the text inputs & buttons into components 
-  // Add the colors into separate sheet
-  // Build a base style for all the pages 
+  // Add the text inputs & buttons into components (done)
+  // Add the colors into separate sheet (done)
+  // Build a base style for all the pages (done with Nav)
   // Functionality of the buttons 
   // Animation of the buttons & transiction between pages
   // Build the DB
@@ -60,12 +60,12 @@ export default function App() {
       >
         {/* <Stack.Screen name="Login" component={LogIn} /> */}
         <Stack.Screen name="Categoies" component={CategoriesScreen} 
-        options={{
-          title: 'All Categories',
-        }}
+          options={{
+            title: 'All Categories',
+          }}
          />
         <Stack.Screen name="Service" component={ServicesScreen} />
-        <Stack.Screen name="Offer" component={Offer} />
+        <Stack.Screen name="Offer" component={OfferScreen} />
         <Stack.Screen name="Scan" component={Scan} />
       </Stack.Navigator>
     </NavigationContainer>

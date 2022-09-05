@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button, Image, Separator, SafeAreaView, Alert, 
 import PrimaryButton from "../components/PrimaryButton";
 import Colors from "../constants/colors";
 
-function Offer({handleScan}) {
+function OfferScreen({ route, navigation }) {
     function handleScanClicing()
     {
         console.log('offer clicked'); 
@@ -26,13 +26,13 @@ function Offer({handleScan}) {
                 <Text style={styles.contentText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry, Lorem Ipsum is simply dummy text of the printing and typesetting industry, Lorem Ipsum is simply dummy text of the printing and typesetting industry</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <PrimaryButton buttonText='Scan' onPress={handleScan}/>
+                <PrimaryButton buttonText='Scan' onPress={handleScanClicing}/>
             </View>
             </View>
     </SafeAreaView>    );
 };
 
-export default Offer;
+export default OfferScreen;
 
 const styles = StyleSheet.create({
     rootScreen: {

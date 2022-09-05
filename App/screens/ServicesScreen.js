@@ -1,37 +1,65 @@
-import { FlatList } from "react-native";
-import { OFFERS } from "../data/dummy-data";
-// import CategoryGridTitle from '../components/CategoryGridTitle';
+import { useLayoutEffect } from "react";
+import { StyleSheet, View, Text, FlatList } from "react-native"
+// import MealItem from "../components/MealItem";
+import { CATEGORIES, OFFERS } from "../data/dummy-data";
+// import CategoryGridTitle from '../components/CategoryGridTitle';    
+// import offerItem from '../components/OfferItem';
+import OfferItem from "../components/OfferItem";
 import ServiceGridTitle from "../components/ServiceGridTitle";
 
 
-function ServicesScreen({navigation}){
+function ServicesScreen({ route, navigation }){
 
-    function renderCategoryItem(itemData) {
-        function pressHandler() {
-            // navigate function has 2 parameters, ('name of the screen',date to be passed) in this case the data is in the itemData
-            navigation.navigate('Offer', {
-                // categoryId: itemData.item.id,
-            });
+    const catId = route.params.categoryId; 
+    const displayedOffers = OFFERS.filter((offerItem) => {
+        return offerItem.categoryIds.indexOf(catId) >= 0;
+    });
+
+    // console.log(displayedOffers);
+
+    useLayoutEffect(() => {
+        const categoryTitle = CATEGORIES.find(
+            (category) => category.id === catId
+        ).title;
+        navigation.setOptions({
+            title: categoryTitle,
+        });
+    },[catId, navigation])
+
+    function renderOfferItem(itemData) {
+        const item = itemData.item;
+        console.log(item)
+        const offerItemProps = {
+            id: item.id,
+            categoryIds: item.categoryIds, 
+            companyName: item.companyName, 
+            image: item.image, 
+            simpleText: item.simpleText, 
+            details: item.details, 
+            aboutCompany: item.aboutCompany
         }
-        return (
-            <ServiceGridTitle 
-                title={itemData.item.companyName} 
-                image={itemData.item.image}
-                simpleText={itemData.item.simpleText}
-                onPress={pressHandler} 
-            />
-        );
-
+        return <OfferItem {...offerItemProps}/>
     }
+    // console.log(offerItemProps)
+
 
     return (
-        <FlatList 
-            data={OFFERS} 
-            keyExtractor={(item) => item.id } 
-            renderItem = {renderCategoryItem}
-            numColumns={1}
-        />
+        <View style={styles.continer}>
+            <FlatList 
+                data={displayedOffers} 
+                keyExtractor={(item) => {item.id}} renderItem={renderOfferItem} 
+             />
+        </View>
     );
+    return <Text>''</Text>
+
 }
 
 export default ServicesScreen;
+
+const styles = StyleSheet.create({
+    continer: {
+        flex: 1,
+        padding: 16,
+    },
+});
