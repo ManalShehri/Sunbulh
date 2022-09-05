@@ -1,36 +1,37 @@
 import { FlatList } from "react-native";
-import { CATEGORIES } from "../data/dummy-data";
-import { StyleSheet, View, Text, Image, ImageBackground, SafeAreaView, TouchableHighlight } from "react-native";
-import CategoryGridTitle from '../components/CategoryGridTitle';
+import { OFFERS } from "../data/dummy-data";
+// import CategoryGridTitle from '../components/CategoryGridTitle';
+import ServiceGridTitle from "../components/ServiceGridTitle";
 
-function Services({navigation}) {
+
+function ServicesScreen({navigation}){
 
     function renderCategoryItem(itemData) {
         function pressHandler() {
             // navigate function has 2 parameters, ('name of the screen',date to be passed) in this case the data is in the itemData
             navigation.navigate('Offer', {
-                categoryId: itemData.item.id,
+                // categoryId: itemData.item.id,
             });
         }
         return (
-            <CategoryGridTitle 
-                title={itemData.item.title} 
-                icon={itemData.item.icon} 
+            <ServiceGridTitle 
+                title={itemData.item.companyName} 
+                image={itemData.item.image}
+                simpleText={itemData.item.simpleText}
                 onPress={pressHandler} 
             />
         );
 
     }
- 
+
     return (
         <FlatList 
-            data={CATEGORIES} 
+            data={OFFERS} 
             keyExtractor={(item) => item.id } 
             renderItem = {renderCategoryItem}
-            numColumns={2}
+            numColumns={1}
         />
     );
-
 }
 
-export default Services;
+export default ServicesScreen;

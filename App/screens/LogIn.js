@@ -3,7 +3,7 @@ import { useState } from "react";
 import PrimaryButton from "../components/PrimaryButton";
 import PrimaryTextInput from "../components/PrimaryTextInput";
 import Colors from "../constants/colors";
-import Services from "./Services";
+import Services from "./CategoriesScreen";
 
 
 function LogIn({handleLogin}) {

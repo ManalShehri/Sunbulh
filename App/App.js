@@ -3,7 +3,8 @@ import { useState } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Services from "./screens/Services";
+import CategoriesScreen from "./screens/CategoriesScreen";
+import ServicesScreen from "./screens/ServicesScreen";
 import LogIn from "./screens/LogIn";
 import Offer from "./screens/Offer";
 import Colors from "./constants/colors";
@@ -50,9 +51,20 @@ export default function App() {
     <>
     <StatusBar style='light' />
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: Colors.primaryBlue500 },
+            headerTintColor: 'white',
+            contentStyle: { backgroundColor: Colors.primaryBlue200 },
+        }}
+      >
         {/* <Stack.Screen name="Login" component={LogIn} /> */}
-        <Stack.Screen name="Services" component={Services} />
+        <Stack.Screen name="Categoies" component={CategoriesScreen} 
+        options={{
+          title: 'All Categories',
+        }}
+         />
+        <Stack.Screen name="Service" component={ServicesScreen} />
         <Stack.Screen name="Offer" component={Offer} />
         <Stack.Screen name="Scan" component={Scan} />
       </Stack.Navigator>
